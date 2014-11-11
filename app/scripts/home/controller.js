@@ -73,6 +73,5 @@ $scope.calculationComplete = function ( result ) {
   $scope.calculation = result;
   $scope._justGotResult = true;
 }
-
 })
 })();

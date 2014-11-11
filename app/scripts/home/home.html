@@ -1,0 +1,30 @@
+<div id="ngCalculator">
+  <div class="top">
+   <a href=""><span ng-click="clearScreen()"class="clear">C</span></a><span id="calculation">
+   <p><span ng-bind-html="numsLeftOnInput"></span> &nbsp;&nbsp;<span ng-bind-html="operatorOnInput"> </span>&nbsp;&nbsp;
+    <span ng-bind-html="numsRightOnInput"></span> &nbsp;&nbsp;<span ng-bind-html="isEqualTo"></span>&nbsp;&nbsp;
+    <span ng-bind-html="calculation"></span></p>
+    <div class="screen"></div>
+  </div>
+
+  <div class="keys">
+    <a href=""><span ng-click="collectNum('7')">7</span></a>
+    <a href=""><span ng-click="collectNum('8')">8</span></a>
+    <a href=""><span ng-click="collectNum('9')">9</span></a>
+    <a href=""><span ng-click="collectOperator('+')" class="operator">+</span></a>
+    <a href=""><span ng-click="collectNum('4')">4</span></a>
+    <a href=""><span ng-click="collectNum('5')">5</span></a>
+    <a href=""><span ng-click="collectNum('6')">6</span></a>
+    <a href=""><span ng-click="collectOperator('-')" class="operator">-</span></a>
+    <a href=""><span ng-click="collectNum('1')">1</span></a>
+    <a href=""><span ng-click="collectNum('2')">2</span></a>
+    <a href=""><span ng-click="collectNum('3')">3</span></a>
+    <a href=""><span ng-click="collectOperator('/')" class="operator">÷</span></a>
+    <a href=""><span ng-click="collectNum('0')">0</span></a>
+    <a href=""><span ng-click="collectNum('.')">.</span></a>
+    <a href=""><span ng-click="calculationReady()"class="eval">=</span></a>
+    <a href=""><span ng-click="collectOperator('*')" class="operator">x</span></a>
+  </div>
+  <span><p ng-bind-html="errorMessage"></p></span>
+
+</div>

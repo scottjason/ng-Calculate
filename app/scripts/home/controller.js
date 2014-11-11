@@ -11,6 +11,11 @@ $scope.numsRight = [];
 $scope.dataReady = [];
 
 $scope.collectNum = function ( num ) {
+  if ( $scope._justGotResult ) {
+      $scope.clearScreen();
+      $scope._justGotResult = false;
+  }
+
   if ( ! $scope._hasClickedOperator ) {
     $scope.numsLeft.push( num )
     $scope.renderLeftOnInput();
@@ -46,13 +51,17 @@ $scope.clearScreen = function () {
   $scope.operator = "";
   $scope._hasClickedOperator = false;
   $scope.errorMessage = "";
+  $scope.numsRightOnInput = ""
+  $scope.numsLeftOnInput = ""
+  $scope.operatorOnInput = ""
+  $scope.calculation = ""
+  $scope.isEqualTo = ""
 }
 
 $scope.calculationReady = function () {
   if ( $scope.numsLeft.length !== 0 && $scope.numsRight.length !== 0 && $scope._hasClickedOperator ) {
     $scope.dataReady.push( $scope.numsLeft, $scope.numsRight, $scope.operator );
     HomeRequest.requestEvaluation( $scope.dataReady, $scope.calculationComplete );
-    $timeout( $scope.clearScreen, 500 );
   }
   else {
     $scope.errorMessage = "Unable to calculate. Please try again.";
@@ -62,6 +71,7 @@ $scope.calculationReady = function () {
 $scope.calculationComplete = function ( result ) {
   $scope.isEqualTo = "="
   $scope.calculation = result;
+  $scope._justGotResult = true;
 }
 
 })

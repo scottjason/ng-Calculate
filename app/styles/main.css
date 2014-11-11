@@ -31,6 +31,13 @@ padding-left: 10px;
 padding-top: 10px;
 display: inline-block;
 }
+#siteTitle {
+color: #000;
+margin-left: 45.4%;
+font-size: 30px;
+padding-top: 20px;
+/*display: inline-block;*/
+}
 .keys, .top {
     overflow: hidden;
 }

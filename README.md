@@ -1,3 +1,3 @@
 <p style='text-align: center;'>
-<strong>Angular Calculator</strong>
+<strong>ng-Calculate</strong>
 <br>

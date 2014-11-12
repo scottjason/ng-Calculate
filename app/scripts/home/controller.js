@@ -5,11 +5,12 @@
 angular.module( 'calcApp' )
   .controller('HomeCtrl', function( $scope, $timeout, Operator ) {
 
-$scope._hasClickedOperator = false
+$scope._hasClickedOperator = false;
 $scope.numsLeft = [];
 $scope.numsRight = [];
 $scope.dataReady = [];
 
+/* collect the numbers and verify whether the result and operator booleans needs to be reset */
 $scope.collectNum = function ( num ) {
   if ( $scope._justGotResult ) {
       $scope.clearScreen();
@@ -17,15 +18,16 @@ $scope.collectNum = function ( num ) {
   }
 
   if ( ! $scope._hasClickedOperator ) {
-    $scope.numsLeft.push( num )
+    $scope.numsLeft.push( num );
     $scope.renderLeftOnInput();
   }
   else {
-     $scope.numsRight.push( num )
+    $scope.numsRight.push( num );
     $scope.renderRightOnInput();
   }
 }
 
+/* collect the operator and verify there's only been one submitted, otherwise render error and reset */
 $scope.collectOperator = function ( operator ) {
   if ( $scope._hasClickedOperator ) {
     $scope.errorMessage = "Please try again using one expression.";
@@ -55,12 +57,15 @@ $scope.clearScreen = function () {
   $scope.operator = "";
   $scope._hasClickedOperator = false;
   $scope.errorMessage = "";
-  $scope.numsRightOnInput = ""
-  $scope.numsLeftOnInput = ""
-  $scope.operatorOnInput = ""
-  $scope.calculation = ""
+  $scope.numsRightOnInput = "";
+  $scope.numsLeftOnInput = "";
+  $scope.operatorOnInput = "";
+  $scope.calculation = "";
 }
 
+/* when the equals sign is clicked, verify we have the data we need, push to an array and pass
+  this and the callback into the Operator serivce
+*/
 $scope.calculationReady = function () {
   if ( $scope.numsLeft.length !== 0 && $scope.numsRight.length !== 0 && $scope._hasClickedOperator ) {
     $scope.dataReady.push( $scope.numsLeft, $scope.numsRight, $scope.operator );
@@ -71,6 +76,8 @@ $scope.calculationReady = function () {
     $timeout( $scope.clearScreen, 1500 );
   }
 }
+
+/* when the server has completed calculating */
 $scope.calculationComplete = function ( result ) {
   $scope.numsRightOnInput = "";
   $scope.operatorOnInput = "";

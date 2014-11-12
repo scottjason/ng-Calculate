@@ -1,5 +1,9 @@
 module.exports = function( app ) {
 
+/*
+Use eval only when needed with decimals, convert integer  expression,
+then back to string before passing back to client
+*/
   app.post('/api/add', function ( req, res, next ) {
 /* convert the array of numers to a string of numbers and remove the operator from its array */
     var numsLeft = req.body[0].join('');

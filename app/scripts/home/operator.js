@@ -5,9 +5,13 @@
 angular.module('calcApp')
   .service('Operator', function ( RequestInterface ) {
 
+/*
+  an interface between server activity and the controller
+  checks for operator to determine which request to make
+*/
     this.filterEvaluation = function( dataArr, callback ) {
       if( dataArr[2] === "+" ) {
-        RequestInterface.makeAdditionRequest( dataArr, callback )
+        RequestInterface.makeAdditionRequest( dataArr, callback );
         return;
       }
       else if ( dataArr[2] === "-" ) {

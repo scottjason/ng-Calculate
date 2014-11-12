@@ -3,7 +3,7 @@
     'use strict'
 
 angular.module( 'calcApp' )
-  .controller('HomeCtrl', function( $scope, $timeout, HomeRequest ) {
+  .controller('HomeCtrl', function( $scope, $timeout, Operator ) {
 
 $scope._hasClickedOperator = false
 $scope.numsLeft = [];
@@ -27,6 +27,10 @@ $scope.collectNum = function ( num ) {
 }
 
 $scope.collectOperator = function ( operator ) {
+  if ( $scope._hasClickedOperator ) {
+    $scope.errorMessage = "Please try again using one expression.";
+    $timeout( $scope.clearScreen, 1500 );
+  }
   $scope.operator = operator;
   $scope._hasClickedOperator = true;
   $scope.renderOperatorOnInput();
@@ -55,13 +59,12 @@ $scope.clearScreen = function () {
   $scope.numsLeftOnInput = ""
   $scope.operatorOnInput = ""
   $scope.calculation = ""
-  $scope.isEqualTo = ""
 }
 
 $scope.calculationReady = function () {
   if ( $scope.numsLeft.length !== 0 && $scope.numsRight.length !== 0 && $scope._hasClickedOperator ) {
     $scope.dataReady.push( $scope.numsLeft, $scope.numsRight, $scope.operator );
-    HomeRequest.requestEvaluation( $scope.dataReady, $scope.calculationComplete );
+    Operator.filterEvaluation( $scope.dataReady, $scope.calculationComplete );
   }
   else {
     $scope.errorMessage = "Unable to calculate. Please try again.";
@@ -69,7 +72,9 @@ $scope.calculationReady = function () {
   }
 }
 $scope.calculationComplete = function ( result ) {
-  $scope.isEqualTo = "="
+  $scope.numsRightOnInput = "";
+  $scope.operatorOnInput = "";
+  $scope.numsLeftOnInput = "";
   $scope.calculation = result;
   $scope._justGotResult = true;
 }

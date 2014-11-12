@@ -6,17 +6,48 @@ angular.module('calcApp')
     .service('Server', function ( $http, $q ) {
 
     return({
-        requestCalculation : requestCalculation
+        requestAddition : requestAddition,
+        requestSubtraction : requestSubtraction,
+        requestMultiplication : requestMultiplication,
+        requestDivision : requestDivision
     });
 
-function requestCalculation ( params ) {
+function requestAddition ( params ) {
   var request = $http({
       method : "POST",
-      url : '/calculate',
+      url : '/api/add',
       data : params
     });
    return( request.then( successHandler, errorHandler ) );
   }
+
+function requestSubtraction ( params ) {
+  var request = $http({
+      method : "POST",
+      url : '/api/subtract',
+      data : params
+    });
+   return( request.then( successHandler, errorHandler ) );
+  }
+
+ function requestMultiplication ( params ) {
+  var request = $http({
+      method : "POST",
+      url : '/api/multiply',
+      data : params
+    });
+   return( request.then( successHandler, errorHandler ) );
+  }
+
+function requestDivision ( params ) {
+  var request = $http({
+      method : "POST",
+      url : '/api/divide',
+      data : params
+    });
+   return( request.then( successHandler, errorHandler ) );
+  }
+
 
 function errorHandler( response ) {
   return( response.data )

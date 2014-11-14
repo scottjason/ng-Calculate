@@ -6,7 +6,7 @@ Angular.js, Node.js, Express.js
 - Scott Jason -
 <br>
 
-To run in your local environment, please make sure you have Node and bower installed.
+To run in your local environment, please make sure you have Node and Bower installed. Git clone the repo,
 
 Then in the root directory, type :
 
@@ -24,3 +24,6 @@ Navigate to http://localhost:3000 to start calculating.
 To visit the live site :
 
 	http://ngcalculate-40270.onmodulus.net/
+	
+--------------------------------------------------------------
+
